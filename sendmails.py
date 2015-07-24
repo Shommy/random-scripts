@@ -23,7 +23,6 @@ parser.add_argument("-p", "--password", help="SMTP password")
 parser.add_argument("-d", "--delay", help="Delay between mail sends (seconds)")
 parser.add_argument("-a", "--attachment", help="Filename to add as an attachment")
 parser.add_argument("-t", "--tls", help="Use TLS to connect to an external SMTP server", action="store_true")
-
 args = parser.parse_args()
 
 if not args.emails or not args.body or not args.subject or not args.fromheader:
@@ -112,7 +111,7 @@ for email in emails:
     server = smtplib.SMTP('localhost')
   else:
     server = smtplib.SMTP(args.host, args.port)
-    # if SMTP server only supports TLS connections:
+    # If SMTP server only supports TLS connections:
     if args.tls:
       server.starttls()
     server.login(args.username, args.password)
